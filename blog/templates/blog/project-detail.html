@@ -1,0 +1,30 @@
+{% extends 'blog/layout.html' %}
+{% block content %}
+  <article class="media content-section">
+    <img class="rounded-circle article-img" src="{{ posts.author.profile.image.url }}">
+    <div class="media-body">
+      <div class="article-metadata">
+        <a class="mr-2" href="#">{{ posts.author }}</a>
+        <small class="text-muted">{{ posts.date_posted }}</small>
+        <small class="text-muted">Status: {{ posts.status }}</small>
+        {% if object.author == user %}
+          <div >
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'project-update' object.id %}">Update</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'project-delete' object.id %}">Delete</a>
+          </div>
+        {% endif %}
+      </div>
+      <h2 class="article-title">{{ posts.title }}</h2>
+      {% if posts.idea %}
+      <p class="article-content">{{ posts.idea }}</p>
+      {% endif %}
+      {% if posts.git_link %}
+      <a href="{{ posts.git_link }}" target="_blank"><button class='btn btn-outline-info'>View Project Source code</button></a>
+      {% endif %}
+      {% if posts.project_link %}
+      <a href="{{ posts.project_link }}" target="_blank"><button class='btn btn-outline-info'>View Live Project</button></a>
+      {% endif %}
+    </div>
+  </article>
+
+{% endblock content %}
