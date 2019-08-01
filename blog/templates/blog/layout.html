@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
    {% if title %}
-    <title>Django Blog - {{ title }}</title>
+    <title>Simoniel Musyoki - {{ title }}</title>
     {% else %}
-    <title>Django Blog </title>
+    <title>Simoniel Musyoki </title>
     {% endif %}
 </head>
 <body>
@@ -25,20 +25,25 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarToggle">
                     <div class="navbar-nav mr-auto">
-                      <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
+                      <a class="nav-item nav-link" href="{% url 'blog-home' %}">Blog</a>
                       <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
-                      <a class="nav-item nav-link" href="{% url 'blog-about' %}">Finished Projects</a>
-                      <a class="nav-item nav-link" href="{% url 'blog-about' %}">Ongoing Projects</a>
+                      <a class="nav-item nav-link" href="{% url 'projects' %}">Projects</a>
+                      {% if user.is_authenticated %}
+                       <a class="nav-item nav-link" href="{% url 'messages' %}">Messages</a>
+                      {% endif %}
+                      {% if not user.is_authenticated %}
+                       <a class="nav-item nav-link" href="{% url 'blog-contact' %}">Contact</a>
+                      {% endif %}
                     </div>
                     <!-- Navbar Right Side -->
                     <div class="navbar-nav">
                       {% if user.is_authenticated %}
+                        <a class="nav-item nav-link" href="{% url 'project-create' %}">New Project</a>
                         <a class="nav-item nav-link" href="{% url 'post-create' %}">New Post</a>
                         <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
                         <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
                       {% else %}
                         <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
-                        <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
                       {% endif %}
                     </div>
                 </div>
