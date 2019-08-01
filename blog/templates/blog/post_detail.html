@@ -15,6 +15,9 @@
       </div>
       <h2 class="article-title">{{ posts.title }}</h2>
       <p class="article-content">{{ posts.content }}</p>
+      {% if posts.url %}
+      <p class="article-content"><a href='{{ posts.url }}'target="_blank">Read more here</a></p>
+      {% endif %}
     </div>
   </article>
 
