@@ -1,0 +1,228 @@
+/* Projects grid: equal-size tiles, 4 per row */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+@media (max-width: 991px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 575px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Auto-scrolling marquee rows (used by Tech Stacks) */
+.marquee-row {
+  overflow: hidden;
+  width: 100%;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 5%,
+    #000 95%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 5%,
+    #000 95%,
+    transparent
+  );
+}
+
+.marquee-row .marquee-track {
+  display: flex;
+  align-items: stretch;
+  width: max-content;
+  animation: marquee-scroll linear infinite;
+}
+
+.marquee-row:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-row .marquee-track {
+    animation: none;
+  }
+}
+
+.project-card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.project-mockup-frame {
+  background: #e8e8e8;
+  border-bottom: 8px solid #050748;
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  display: block;
+}
+
+.project-mockup-frame::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 12px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ff5f56;
+  box-shadow: 16px 0 0 #ffbd2e, 32px 0 0 #27c93f;
+  z-index: 2;
+}
+
+.project-mockup-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  margin-top: 20px;
+}
+
+/* Mobile app cards: same uniform tile size as the others, with the screenshot
+   rendered as a bezeled phone inset rather than filling the whole frame. */
+.project-mockup-frame--phone {
+  border-bottom: none;
+  background: #1c1c34;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-mockup-frame--phone::before {
+  display: none;
+}
+
+.project-mockup-frame--phone img {
+  width: auto;
+  height: 92%;
+  max-width: 55%;
+  margin: 0;
+  object-fit: cover;
+  border: 5px solid #050748;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+.project-info {
+  padding: 25px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-info h4 {
+  margin-bottom: 10px;
+}
+
+.project-info p {
+  margin-bottom: 15px;
+  flex: 1;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.project-tags span {
+  background: #f1f1fb;
+  color: #050748;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.project-visit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  padding: 10px 22px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  background-color: #050748;
+  border-radius: 100px;
+}
+
+.project-visit-btn:hover {
+  color: #fff;
+}
+
+a.project-visit-btn .circle {
+  width: 90px;
+  height: 90px;
+  right: -60px;
+}
+
+a.project-visit-btn:hover .circle {
+  right: -20px;
+}
+
+/* Tech stacks marquee */
+.techstack-marquee .marquee-track {
+  gap: 30px;
+  padding: 0 15px;
+  animation-duration: 45s;
+  align-items: center;
+}
+
+.techstack-marquee .clients-logo {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0 10px;
+  min-height: 70px;
+  max-height: 70px;
+}
+
+.techstack-marquee .clients-logo img {
+  width: 48px;
+}
+
+/* Google Forms contact embed */
+.google-form-embed {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.google-form-embed iframe {
+  display: block;
+  width: 100%;
+  height: 1116px;
+  border: none;
+}
+
+@media (max-width: 575px) {
+  .google-form-embed iframe {
+    height: 1500px;
+  }
+}
